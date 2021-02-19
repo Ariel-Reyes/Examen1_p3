@@ -31,4 +31,6 @@ liga::liga(string,vector<equipo*> lista_equipo,vector<partido*> jornada,vector<t
 	vector<tabla*> liga::retorne_tabla(){
 		return this->tabla_posi; 
 	}; 
-	
+	void liga::eliminar(int po){
+		lista_equipo.erase(begin(lista_equipo)+po);
+	};

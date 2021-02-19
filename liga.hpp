@@ -26,7 +26,8 @@ class liga{
 	vector<partido*> retorne_partidos();
 	
 	void set_tabla(tabla*); 
-	vector<tabla*> retorne_tabla(); 	
+	vector<tabla*> retorne_tabla(); 
+	void eliminar(int); 	
 };
 
 #endif /*liga_hpp*/

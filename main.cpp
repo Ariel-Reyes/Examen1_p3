@@ -125,11 +125,10 @@ int main() {
 							int indice; 
 							cin>>indice; 
 							eq=a->retorne_equipos()[indice];
+						a->eliminar(indice);
+							
 						
-					   for(int i=0;i<a->retorne_equipos().size();i++){
-				                  
-					   	
-					   }
+					 
 	
 							break;
 						}
@@ -149,12 +148,69 @@ int main() {
 	
 				break;
 			}
-			
+			// ejercicio 2 
 			case 2:{
+		if(a->retorne_equipos().size()==0){
+		} else{
+		
+
+			equipo* eq;
+			equipo* qe;  
+		    vector<equipo*> x = a->retorne_equipos(); 
+		    if(x.size()%2!=0){
+		    	cout<<"TIENE QUE HABER EQUIPOS PARES"<<endl; 
+		} else{
+		
+		    while(x.size()>0){
+			
+		    
+			cout<<".........LISTAR EQUIPOS DISPONIBLES.........."<<endl; 
+			for(int i=0;i<x.size();i++){
+			eq = x[i];
+		
+	      cout<<i<<")"<<".............."<<eq->getnombre()<<endl; 
+			}
 				
+			
+			int indice_uno = rand()%x.size(); 
+			int indice_dos=  rand()%x.size(); 
+			cout<<indice_uno<<endl;
+			cout<<indice_dos<<endl;  
+			
+			
+			eq = x[indice_uno]; 
+			qe= x[indice_dos]; 
+				
+		
+			while(eq->getnombre()==qe->getnombre()){
+				indice_uno = rand()%x.size(); 
+			indice_dos=rand()%x.size(); 	
+		     eq = x[indice_uno]; 
+			qe= x[indice_dos];
+			}
+				
+			cout<<x.size(); 
+			
+			cout<<"El Equipo dos es: "<<qe->getnombre()<<endl; 
+			cout<<"El Equipo uno es: "<<eq->getnombre()<<endl; 
+		
+		 partido* pa = new partido(*eq,*qe,indice_uno,indice_dos,false); 
+			
+			a->set_partido(pa);
+			
+			x.erase(begin(x)+indice_uno);
+			x.erase(begin(x)+indice_dos);	
+	
+		}
+	}
+	} 
+	
 				break;
 			}
 			case 3:{
+				
+				
+				
 				
 				break;
 			}
