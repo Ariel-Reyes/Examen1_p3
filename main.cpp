@@ -12,6 +12,7 @@ using namespace std;
 int main() {
 	srand(time(NULL));
 		liga *a = new liga();
+		tabla* s;
  
 	int opc = 2; 
 	while(opc!=5){
@@ -49,20 +50,10 @@ int main() {
 							cout<<"El skill del equipo: "<< nombre << " es: " << skill<<endl;
 							equipo x(nombre,skill);
 							a->set_equipo(new equipo(nombre, skill)); 
-						  cout<<"Ingrese los goles a favor: "<<endl;
-						  int g_favor,g_contra,p_gana,p_per,p_empa; 
-						  cin>>g_favor; 
-						  cout<<"Ingrese los goles en contra: "<<endl; 
-						  cin>>g_contra; 
-						  cout<<"Ingrese los partidos ganados: "<<endl; 
-						  cin>>p_gana; 
-						  cout<<"Ingrese los partidos perdidos: "<<endl;
-						  cin>>p_per; 
-						  cout<<"Ingrese los partidos empatados: "<<endl; 
-						  cin>>p_empa; 
+						 
 						
-							puntos_equipo* v = new puntos_equipo(x,g_favor,g_contra,p_gana,p_per,p_empa);
-					      tabla* s = new tabla(); 
+							puntos_equipo* v = new puntos_equipo(x,0,0,0,0,0);
+					       s = new tabla(); 
 						  s->set_puntos(v);	
 						  a->set_tabla(s); 
 						
@@ -194,7 +185,7 @@ int main() {
 			cout<<"El Equipo dos es: "<<qe->getnombre()<<endl; 
 			cout<<"El Equipo uno es: "<<eq->getnombre()<<endl; 
 		
-		 partido* pa = new partido(*eq,*qe,indice_uno,indice_dos,false); 
+		 partido* pa = new partido(*eq,*qe,0,0,false); 
 			
 			a->set_partido(pa);
 			
@@ -208,6 +199,58 @@ int main() {
 				break;
 			}
 			case 3:{
+			//	cout<<"sd";
+				partido* uno; 
+				int num_pa = rand()%a->retorne_partidos().size(); 
+				uno = a->retorne_partidos()[num_pa];
+			
+				equipo team_uno = uno->getEquipo_uno(); 
+				equipo team_dos =  uno->getEquipo_dos(); 
+				//	cout<<"Gano el equipo: "<<team_uno.getnombre();
+				int rad_uno = -15 + rand()%15; 
+				int rad_dos = -15 + rand()%15; 
+				
+				int sk_uno = team_uno.getskill() + rad_uno; 
+				int sk_dos = team_dos.getskill() + rad_dos; 
+					puntos_equipo* c;
+					equipo* n; 
+				if(sk_uno>sk_dos){
+				for(int i=0;i<s->retorno_puntos().size();i++){
+					
+				 c = s->retorno_puntos()[i];
+					cout<<c->getEquipo().getnombre();
+					if(c->getEquipo().getnombre() == team_uno.getnombre()) {
+						c->setpart_ganados(1); 
+						c->setgoles_favor(3);
+						cout<<"Gano el equipo: "<<team_uno.getnombre();
+					
+					}
+				}
+				
+				
+				} else {
+					
+						for(int i=0;i<s->retorno_puntos().size();i++){
+					
+				 c = s->retorno_puntos()[i];
+					cout<<c->getEquipo().getnombre();
+					if(c->getEquipo().getnombre() == team_dos.getnombre()) {
+						c->setpart_ganados(1);
+						c->setgoles_favor(3); 
+						 
+						cout<<"Gano el equipo: "<<team_dos.getnombre();
+					
+					}
+				}
+					
+					
+				}
+				
+				if(sk_uno==sk_dos){
+					cout<<"Empate"<<endl; 
+				}
+				
+				
 				
 				
 				
@@ -215,6 +258,10 @@ int main() {
 				break;
 			}
 			case 4:{
+				
+				// pendiente 
+				
+				
 				
 				break;
 			}
